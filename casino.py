@@ -41,3 +41,34 @@ class Deck():
         
         card = self.cards.pop()
         return card
+
+class Player():
+  """A Class for the user to play Black Jack"""
+
+  def __init__(self):
+    """Initialize the player"""
+    self.hand = []
+    self.hand_value = 0
+    self.playing_hand = True
+
+  def draw_hand(self, deck):
+    """Deal the player starting hand"""
+    for x in range(2):
+      card = deck.deal_card()
+      self.hand.append(card)
+  
+  def dispaly_hand(self):
+    """show the player's hand"""
+    print("\nPlayer's Hand: ")
+    for card in self.hand:
+      card.dispaly_card()
+
+  
+  def hit():
+
+  def get_hand():
+
+  def update_hand():
+
+  
+  
