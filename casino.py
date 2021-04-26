@@ -64,11 +64,38 @@ class Player():
       card.dispaly_card()
 
   
-  def hit():
+  def hit(self, deck):
+    """Give the player a new card"""
+    card = deck.deal_card()
+    self.hand.append(card)
 
-  def get_hand():
+  def get_hand_value(self):
+    """Compute the value of the player hand."""
+    self.hand_value = 0
 
-  def update_hand():
+    ace_in_hand = False
+    for card in self.hand:
+      self.hand_value += card.value
+
+      if card.rank == 'A':
+        ace_in_hand = True
+      
+    if self.hand_value > 21 and ace_in_hand:
+      self.hand_value -= 10
+    print(f"Total value: {self.hand_value}")
+
+
+  def update_hand(self, deck):
+    """Update the players hand by allowing them to hit"""
+    if self.hand_value < 21:
+      choice = input("Would you like to hit(y/n): ").lower()
+      if (choice == 'y'):
+        self.hit(deck)
+      else:
+        self.playing_hand = False
+    else:
+      self.playing_hand = False
+    
 
   
   
