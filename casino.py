@@ -125,7 +125,7 @@ class Dealer():
             self.hand.append(card)
             self.get_hand_value()
 
-        print(f"\nDealer is set with a total of {self.hand} cards.")
+        print(f"\nDealer is set with a total of {len(self.hand)} cards.")
 
     def get_hand_value(self):
         """Compute the value of the players hand."""
@@ -144,7 +144,7 @@ class Dealer():
 class Game():
     """A class to hold bets and payouts"""
 
-    def __init__(self):
+    def __init__(self, money):
         self.money = int(money)
         self.bet = 20
         self.winner = ""
@@ -152,21 +152,22 @@ class Game():
     def set_bet(self):
         betting = True
         while betting:
-            bet = int(input("What would you like to bet( minimum bet of 20): "))
+            self.bet = int(
+                input("What would you like to bet( minimum bet of 20): "))
 
-            if bet < 20:
-                bet = 20
-            if bet > self.money:
+            if self.bet < 20:
+                self.bet = 20
+            if self.bet > self.money:
                 print("Sorry, you can't afford that bet.")
             else:
-                self.bet = bet
+                self.bet = self.bet
                 betting = False
 
     def scoring(self, p_value, d_value):
         if p_value == 21:
             print(f"You got BLACK JACK!!! You win!")
             self.winner = "p"
-        elif d_value = 21:
+        elif d_value == 21:
             print("The dealer got black jack...You lose.")
             self.winner = 'd'
         elif p_value > 21:
@@ -187,6 +188,14 @@ class Game():
                 print(f"Dealer gets {d_value}. It's a push...")
                 self.winner = "tie"
 
-    def payout():
+    def payout(self):
+        if self.winner == "p":
+            self.money += self.bet
+        elif self.winner == "d":
+            self.money -= self.bet
 
-    def display_money():
+    def display_money(self):
+        print(f"\nCurrent Money: ${self.money}.")
+
+    def disMonBet(self):
+        print(f"\nCurrent Money ${self.money}. \n\t\tCurrent Bet: ${self.bet}")
